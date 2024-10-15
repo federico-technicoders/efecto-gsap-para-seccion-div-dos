@@ -47,12 +47,12 @@ export default function Home() {
       <Section />
       <Section />
       <Section />
+      {/* <Section />
       <Section />
       <Section />
       <Section />
       <Section />
-      <Section />
-      <Section />
+      <Section /> */}
       {/* <Section /> */}
     </>
   )

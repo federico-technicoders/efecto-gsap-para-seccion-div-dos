@@ -1,6 +1,5 @@
 'use client'
-
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
@@ -8,6 +7,7 @@ import { useGSAP } from "@gsap/react"
 gsap.registerPlugin(ScrollTrigger);
 
 export const Section = () => {
+    const [currentSection, setCurrentSection] = useState(1) 
     const sectionRef = useRef(null)
     const leftSectionRef = useRef(null)
     const rightSectionsRef = useRef(null)
@@ -21,8 +21,9 @@ export const Section = () => {
         
         ScrollTrigger.create({
             trigger: section,
-            start: "top top",
-            end: "bottom bottom",
+            // start: "top top",
+            start: "bottom bottom",
+            // end: "bottom bottom",
             pin: leftSection,
             pinSpacing: false
         })
@@ -33,14 +34,25 @@ export const Section = () => {
                 start: () => "top top",
                 // end: () => "+=" + sectionElement.offsetHeight,
                 pin: true, // Fija la sección en su lugar
-                pinSpacing: false, // No agregar espacio extra
+                pinSpacing: false, 
                 scrub: 6,
                 // snap: 1 / (rightSections.length - 1),
                 // invalidateOnRefresh: false
-                // markers: true // Solo para depuración, puedes quitarlo en producción
+                markers: true,
+                onEnter: () => handleSectionChange(index + 1), 
+                onEnterBack: () => handleSectionChange(index + 1)
             })
         })      
     })
+
+    const handleSectionChange = (sectionNumber) => {
+        gsap.to({}, { 
+            duration: 1, 
+            onUpdate: () => {
+                setCurrentSection(sectionNumber) 
+            }
+        });
+    }
 
   return (
         <section 
@@ -50,12 +62,17 @@ export const Section = () => {
             {/* Mitad izquierda fija */}
             <div className="w-1/2 bg-blue-500 sticky top-0 h-screen flex justify-center items-center">
                 <h2 className="text-white text-4xl font-bold">Contenido Fijo</h2>
+                <div 
+                    className="absolute flex justify-center items-center -right-[150px] w-[300px] h-[300px] bg-black rounded-2xl z-10"
+                >
+                    <span className="text-9xl font-bold">0{currentSection}</span>
+                </div>
             </div>
 
             {/* Mitad derecha con múltiples secciones */}
             <div 
                 ref={rightSectionsRef} 
-                className="w-1/2"
+                className="w-1/2 -z-10"
             >
                 <div className="right-section bg-green-500 h-screen flex justify-center items-center">
                     <h3 className="text-white text-2xl">Sección 1</h3>
