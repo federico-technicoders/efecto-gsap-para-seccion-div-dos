@@ -45,8 +45,8 @@ export default function Home() {
   return (
     <>
       <Section />
-      <Section />
-      <Section />
+      {/* <Section />
+      <Section /> */}
       {/* <Section />
       <Section />
       <Section />

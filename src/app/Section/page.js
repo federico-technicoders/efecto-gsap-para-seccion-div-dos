@@ -23,7 +23,7 @@ export const Section = () => {
             trigger: section,
             // start: "top top",
             start: "bottom bottom",
-            // end: "bottom bottom",
+            end: "bottom bottom",
             pin: leftSection,
             pinSpacing: false
         })
@@ -38,7 +38,7 @@ export const Section = () => {
                 scrub: 6,
                 // snap: 1 / (rightSections.length - 1),
                 // invalidateOnRefresh: false
-                markers: true,
+                // markers: true,
                 onEnter: () => handleSectionChange(index + 1), 
                 onEnterBack: () => handleSectionChange(index + 1)
             })
@@ -60,8 +60,8 @@ export const Section = () => {
             className="relative flex w-full h-screen"
         >
             {/* Mitad izquierda fija */}
-            <div className="w-1/2 bg-blue-500 sticky top-0 h-screen flex justify-center items-center">
-                <h2 className="text-white text-4xl font-bold">Contenido Fijo</h2>
+            <div className="w-1/2 bg-white sticky top-0 h-screen flex justify-center items-center">
+                <h2 className="text-black text-4xl font-bold">Contenido Fijo</h2>
                 <div 
                     className="absolute flex justify-center items-center -right-[150px] w-[300px] h-[300px] bg-black rounded-2xl z-10"
                 >
