@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,37 +23,23 @@ export const Section = () => {
             trigger: section,
             start: "top top",
             end: "bottom bottom",
-            pin: leftSection
+            pin: leftSection,
+            pinSpacing: false
         })
-        
-
-        
-        // rightSections.forEach((sectionElement, index) => {
-        //     gsap.to(sectionElement, {
-        //         yPercent:` ${-100 * index}%`,
-        //         ease: "none",
-        //         scrollTrigger: {
-        //             trigger: sectionElement,
-        //             start: "top top",
-        //             end: () => `+=${sectionElement.offsetHeight * (rightSections.length - 1)}`,
-        //             scrub: true,
-        //             invalidateOnRefresh: true,
-        //             markers: true
-        //         }
-        //     })
-        // })
 
         rightSections.forEach((sectionElement, index) => {
             ScrollTrigger.create({
                 trigger: sectionElement,
                 start: () => "top top",
-                end: () => "+=" + sectionElement.offsetHeight,
+                // end: () => "+=" + sectionElement.offsetHeight,
                 pin: true, // Fija la sección en su lugar
                 pinSpacing: false, // No agregar espacio extra
-                scrub: true,
-                markers: true // Solo para depuración, puedes quitarlo en producción
-            });
-        });
+                scrub: 6,
+                // snap: 1 / (rightSections.length - 1),
+                // invalidateOnRefresh: false
+                // markers: true // Solo para depuración, puedes quitarlo en producción
+            })
+        })      
     })
 
   return (
@@ -70,7 +56,7 @@ export const Section = () => {
             <div 
                 ref={rightSectionsRef} 
                 className="w-1/2"
-                >
+            >
                 <div className="right-section bg-green-500 h-screen flex justify-center items-center">
                     <h3 className="text-white text-2xl">Sección 1</h3>
                 </div>
