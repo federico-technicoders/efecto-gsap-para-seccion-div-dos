@@ -60,17 +60,17 @@ export const Section = () => {
             className="relative flex w-full h-screen"
         >
             {/* Mitad izquierda fija */}
-            <div className="w-1/2 bg-white sticky top-0 h-screen flex justify-center items-center">
+            <article className="w-1/2 bg-white sticky top-0 h-screen flex justify-center items-center">
                 <h2 className="text-black text-4xl font-bold">Contenido Fijo</h2>
                 <div 
                     className="absolute flex justify-center items-center -right-[150px] w-[300px] h-[300px] bg-black rounded-2xl z-10"
                 >
                     <span className="text-9xl font-bold">0{currentSection}</span>
                 </div>
-            </div>
+            </article>
 
             {/* Mitad derecha con múltiples secciones */}
-            <div 
+            <aside 
                 ref={rightSectionsRef} 
                 className="w-1/2 -z-10"
             >
@@ -86,7 +86,7 @@ export const Section = () => {
                 <div className="right-section bg-purple-500 h-screen flex justify-center items-center">
                     <h3 className="text-white text-2xl">Sección 4</h3>
                 </div>
-            </div>
+            </aside>
         </section>
     )
 }
